@@ -12,16 +12,18 @@ import com.suhun.timer.functionobj.StopWatch;
 
 public class MainActivity extends AppCompatActivity {
     public String tag = MainActivity.class.getSimpleName();
-    private StopWatch stopWatch = new StopWatch();
+
     private Button leftButton, rightButton;
     private TextView clock;
     private ListView lapRecord;
+    private StopWatch stopWatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        stopWatch = new StopWatch(clock);
     }
 
     private void initView(){
