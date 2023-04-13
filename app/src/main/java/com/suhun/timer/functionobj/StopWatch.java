@@ -27,11 +27,20 @@ public class StopWatch {
         counter = 0;
     }
 
+    public static String counterToColor(int i){
+        int hs = i % 100;
+        int ts = i / 100; //總秒數
+        int hh = ts / (60*60);
+        int mm = (ts -hh*60*60)/60 ;
+        int ss = ts % 60;
+        return String.format("%d:%d:%d.%d",hh, mm, ss, hs);
+    }
+
     private class UIHandler extends Handler{
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            clock.setText(""+counter);
+            clock.setText(counterToColor(counter));
         }
     }
 
