@@ -17,6 +17,7 @@ public class StopWatch {
     private Timer timer;
     private int counter;
     private MyTask myTask;
+    private UIHandler uiHandler = new UIHandler();
 
     public StopWatch(TextView clock){
         super();
@@ -26,14 +27,21 @@ public class StopWatch {
         counter = 0;
     }
 
-    private class MyTask extends TimerTask{
+    private class UIHandler extends Handler{
         @Override
-        public void run() {
-            counter++;
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
             clock.setText(""+counter);
         }
     }
 
+    private class MyTask extends TimerTask{
+        @Override
+        public void run() {
+            counter++;
+            uiHandler.sendEmptyMessage(0);
+        }
+    }
     public void showLeft(){
 
     }
